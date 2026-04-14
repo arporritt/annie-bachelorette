@@ -260,6 +260,20 @@
     .tab-btn { font-size: 8px; letter-spacing: 1px; }
     .flavor-big { font-size: 17px; display: block; margin-left: 0; margin-top: 2px; }
   }
+
+  /* =========== RSVP FORM =========== */
+  .rsvp-field { margin-bottom: 20px; }
+  .rsvp-label { font-family: 'Nunito Sans'; font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--ocean); display: block; margin-bottom: 8px; }
+  .rsvp-input { width: 100%; font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--navy); background: var(--warm-white); border: 1px solid rgba(184,212,232,0.4); border-radius: 8px; padding: 10px 14px; outline: none; resize: none; }
+  .rsvp-input:focus { border-color: var(--ocean); }
+  .day-checks { display: flex; flex-direction: column; gap: 10px; }
+  .day-check { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .day-check input[type="checkbox"] { accent-color: var(--ocean); width: 16px; height: 16px; cursor: pointer; }
+  .day-check span { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--slate); }
+  .rsvp-submit { width: 100%; margin-top: 8px; padding: 14px; background: var(--ocean); color: white; border: none; border-radius: 10px; font-family: 'Nunito Sans'; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; }
+  .rsvp-submit:hover { background: var(--ocean-deep); }
+  .rsvp-success { margin-top: 16px; text-align: center; font-family: 'Caveat', cursive; font-size: 22px; color: var(--ocean); }
+  .rsvp-error { margin-top: 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--flame); font-style: italic; }
 </style>
 </head>
 <body>
@@ -272,7 +286,7 @@
 </svg>
 
 <div class="page-container">
-  <div class="tab-nav"><button class="tab-btn active" onclick="showPage(0)">Cover</button><button class="tab-btn" onclick="showPage(1)">&#x1F525;</button><button class="tab-btn" onclick="showPage(2)">Itinerary</button><button class="tab-btn" onclick="showPage(3)">Details</button></div>
+  <div class="tab-nav"><button class="tab-btn active" onclick="showPage(0)">Cover</button><button class="tab-btn" onclick="showPage(1)">&#x1F525;</button><button class="tab-btn" onclick="showPage(2)">Itinerary</button><button class="tab-btn" onclick="showPage(3)">Details</button><button class="tab-btn" onclick="showPage(4)">RSVP</button></div>
 
   <!-- COVER -->
   <div class="page page-title active" id="page-0">
@@ -358,7 +372,67 @@
       <div class="footer"><div class="footer-msg">Let's give Annie the weekend she deserves</div><div class="footer-sub">This summer, Annie's not falling in love &mdash; she's falling into flavor.</div></div>
     </div>
     <div class="woven-bar"></div>
-    <div class="nav-arrows"><button class="nav-btn" onclick="showPage(2)">&larr; Prev</button><div class="nav-dots"><span class="nav-dot" onclick="showPage(0)"></span><span class="nav-dot" onclick="showPage(1)"></span><span class="nav-dot" onclick="showPage(2)"></span><span class="nav-dot active" onclick="showPage(3)"></span></div><button class="nav-btn" disabled>Next &rarr;</button></div>
+    <div class="nav-arrows"><button class="nav-btn" onclick="showPage(2)">&larr; Prev</button><div class="nav-dots"><span class="nav-dot" onclick="showPage(0)"></span><span class="nav-dot" onclick="showPage(1)"></span><span class="nav-dot" onclick="showPage(2)"></span><span class="nav-dot active" onclick="showPage(3)"></span><span class="nav-dot" onclick="showPage(4)"></span></div><button class="nav-btn" onclick="showPage(4)">Next &rarr;</button></div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="page page-info" id="page-4">
+    <div class="gingham"></div><div class="gingham-fade"></div>
+    <div class="scallop-top"><svg><use href="#scallop-row"/></svg></div>
+    <div class="woven-bar" style="margin-top:16px;"></div>
+    <div class="content">
+      <div class="page-section-title"><div class="pst-label">Let Us Know</div><div class="pst-name">RSVP</div></div>
+
+      <form id="rsvp-form">
+        <div class="rsvp-field">
+          <label class="rsvp-label">Your Name</label>
+          <input class="rsvp-input" type="text" name="name" placeholder="First &amp; last name" required>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Which days are you attending?</label>
+          <div class="day-checks">
+            <label class="day-check"><input type="checkbox" name="friday" value="Yes"> <span>Friday, July 24</span></label>
+            <label class="day-check"><input type="checkbox" name="saturday" value="Yes"> <span>Saturday, July 25</span></label>
+            <label class="day-check"><input type="checkbox" name="sunday" value="Yes"> <span>Sunday, July 26</span></label>
+          </div>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Sweatshirt Size</label>
+          <select class="rsvp-input" name="sweatshirt">
+            <option value="" disabled selected>Select a size</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Dietary Preferences or Restrictions</label>
+          <textarea class="rsvp-input" name="dietary" rows="2" placeholder="e.g. vegetarian, gluten-free, nut allergy..."></textarea>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Snack Favorites</label>
+          <textarea class="rsvp-input" name="snacks" rows="2" placeholder="What snacks should we stock up on for you?"></textarea>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Drink of Choice</label>
+          <input class="rsvp-input" type="text" name="drink" placeholder="What are you sipping on this weekend?">
+        </div>
+
+        <button class="rsvp-submit" type="submit">Submit RSVP &#x1F338;</button>
+        <div id="rsvp-success" style="display:none;" class="rsvp-success">You're all set! Can't wait to celebrate with you 🎉</div>
+        <div id="rsvp-error" style="display:none;" class="rsvp-error">Something went wrong — please try again or text Allie!</div>
+      </form>
+    </div>
+    <div class="woven-bar"></div>
+    <div class="nav-arrows"><button class="nav-btn" onclick="showPage(3)">&larr; Prev</button><div class="nav-dots"><span class="nav-dot" onclick="showPage(0)"></span><span class="nav-dot" onclick="showPage(1)"></span><span class="nav-dot" onclick="showPage(2)"></span><span class="nav-dot" onclick="showPage(3)"></span><span class="nav-dot active" onclick="showPage(4)"></span></div><button class="nav-btn" disabled>Next &rarr;</button></div>
   </div>
 </div>
 
@@ -374,6 +448,42 @@ function showPage(n) {
   });
   window.scrollTo(0, 0);
 }
+
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUy9SMviWfUdSrHCOpArKbfcweXGpR69VXJ4tCepC7HyPj4tgwQciuUMXwBjQ65FPTyg/exec';
+
+document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('.rsvp-submit');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  var data = {
+    name: form.name.value,
+    friday: form.friday.checked ? 'Yes' : 'No',
+    saturday: form.saturday.checked ? 'Yes' : 'No',
+    sunday: form.sunday.checked ? 'Yes' : 'No',
+    sweatshirt: form.sweatshirt.value,
+    dietary: form.dietary.value,
+    snacks: form.snacks.value,
+    drink: form.drink.value
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() {
+    form.style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  })
+  .catch(function() {
+    document.getElementById('rsvp-error').style.display = 'block';
+    btn.textContent = 'Submit RSVP 🌸';
+    btn.disabled = false;
+  });
+});
 </script>
 
 </body>
