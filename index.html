@@ -390,6 +390,11 @@
         </div>
 
         <div class="rsvp-field">
+          <label class="rsvp-label">Cell Phone Number</label>
+          <input class="rsvp-input" type="tel" name="phone" placeholder="(xxx) xxx-xxxx">
+        </div>
+
+        <div class="rsvp-field">
           <label class="rsvp-label">Which days are you attending?</label>
           <div class="day-checks">
             <label class="day-check"><input type="checkbox" name="friday" value="Yes"> <span>Friday, July 24</span></label>
@@ -460,6 +465,7 @@ document.getElementById('rsvp-form').addEventListener('submit', function(e) {
 
   var data = {
     name: form.name.value,
+    phone: form.phone.value,
     friday: form.friday.checked ? 'Yes' : 'No',
     saturday: form.saturday.checked ? 'Yes' : 'No',
     sunday: form.sunday.checked ? 'Yes' : 'No',
